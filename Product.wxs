@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="AWS Command Line Interface" Language="1033" Version="1.16.36" Manufacturer="Amazon Web Services Developer Relations" UpgradeCode="13ddc71e-f715-11e3-ab90-406c8f1f39d6">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x86" />
+
+    <MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="A newer version of [ProductName] is already installed. Exiting installation." />
+    <!--<MediaTemplate />-->
+
+    <Condition Message="A newer version of [ProductName] is already installed. Exiting installation.">
+      <![CDATA[Installed OR NOT NEWER_VERSION_FOUND]]>
+    </Condition>
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <Feature Id="AWSCLI" Title="AWS Command Line Interface" Level="1" Display="expand" AllowAdvertise="no" ConfigurableDirectory="AWSCLI32PY3"
+             Description="The AWS Command Line Interface is a unified tool to manage your AWS services.">
+      <ComponentGroupRef Id="AWSCLI32PY3_Files" />
+      <Component Id="SetCLIPathEnvironment" Directory="AWSCLI32PY3" Guid="DB393326-0F75-11E3-8BAC-406C8F1F39D6">
+        <CreateFolder/>
+        <Environment Id="SET_ENV" Action="set" Name="PATH" Part="last" Permanent="no" System="yes" Value="[AWSCLI32PY3_BIN]" />
+      </Component>
+    </Feature>
+  <Icon Id="awsicon" SourceFile="resources\amazonaws.ico" />
+  <Property Id="ARPPRODUCTICON" Value="awsicon" />
+  <WixVariable Id="WixUIBannerBmp" Value="resources\logo_aws.jpg" />
+  <WixVariable Id="WixUIDialogBmp" Value="resources\dialog.jpg" />
+  <WixVariable Id="WixUILicenseRtf" Value="LICENSE.rtf" />
+  <UIRef Id="WixUI_FeatureTree" />
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="AmazonProgramsFolderRoot" Name="Amazon">
+          <Directory Id="AWSCLI32PY3" Name="AWSCLI">
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+</Wix>
