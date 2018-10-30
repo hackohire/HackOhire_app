@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-amplify": "^1.1.8",
+    "aws-amplify-vue": "^0.1.1-beta.6",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.4",

@@ -18,10 +18,10 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.get('/ProfileDatas', (req, res) => {
-  Post1.find({}, ' companies projects positions two_years_goal five_years_goal' ,function (error, profileposts) {
+  Post1.find({}, ' companies projects positions two_years_goal five_years_goal' ,function (error, ProfileDatas) {
     if (error) { console.error(error); }
     res.send({
-        profileposts : profileposts
+        ProfileDatas : ProfileDatas
     })
   }).sort({_id:-1})
 })
@@ -49,8 +49,9 @@ app.post('/ProfileDatas', (req, res) => {
     }
     res.send({
       success: true,
-      message: 'Post saved successfully!'
+      message: 'Post saved successfully!',
     })
+    console.log("done");
   })
 })
 

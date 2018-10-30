@@ -16,7 +16,7 @@
       </table>
     </div>
     <div v-else>
-  <h1>please go to dashboard</h1> <br /><br />
+  <h3>please go to dashboard</h3> <br /><br />
      
     </div>
   </div>

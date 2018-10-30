@@ -71,7 +71,7 @@ const routes = [
 
    },
    {
-    path: '/ProfileDatas',name:'ProfileDatas',component: ProfileDatas, meta:{title:'ProfileDatas',auth :false}
+    path: '/ProfileDatas',name:'ProfileDatas',component: ProfileDatas, meta:{title:'ProfileDatas',auth :true}
    }
 
 ]

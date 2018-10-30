@@ -1,6 +1,7 @@
 <template>
+<div class="ProfileDatas">
   <b-container>
-    <div class="b-main-content">
+    <div class="b-main-content">      
     <ul class="list-inline">
           <li class="list-inline-item">
             <a href="/profile">Profile</a>
@@ -12,7 +13,8 @@
             <a href="#">Mentors</a>
           </li>
         </ul>  
-  <b-container class="bv-example-row" fluid> 
+    </div> 
+<b-container class="bv-example-row" fluid> 
     <b-row>
      <b-col > <h2><i class="fal fa-user-tie"></i> Welcome to hackohire</h2>
       <p>{{ user.username }}, Thank you for requesting the trial access.</p>
@@ -32,9 +34,8 @@
   </b-row>
    </b-col > 
    </b-row>
-        </b-container>
-    </div> 
-         <b-form @submit="addPost">
+   </b-container>
+        <b-form @submit="addPost">
             <b-form-group
               label="companies"
               label-for="input-small">
@@ -90,43 +91,42 @@
               variant="primary">Submit</b-button>
           </b-form>
   </b-container> 
+</div>
 </template>
 
 <script>
 import PostsService1 from '@/services/PostsService1'
 import { mapState } from 'vuex'
-
 export default {
-    computed: {
+  name: 'dashboard',
+  computed: {
         ...mapState({
             user: state => state.auth.user,
         })
-    },
-    data () {
+        },
+  data () {
     return {
       companies: '',
-      Projects: '',
+      projects:'',
       positions:'',
       two_years_goal:'',
-      five_years_goal:''
-      
-       }
-    },
-     methods: {
+      five_years_goal:'',
+    }
+  },
+  methods: {
     async addPost () {
       await PostsService1.addPost({
-       companies:this.companies,
-       Projects:this.Projects,
-       positions:this.positions,
-       two_years_goal:this.two_years_goal,
-       five_years_goal:this.five_years_goal
-
-         
+        companies: this.companies,
+        projects: this.projects,
+        positions:this.positions,
+        two_years_goal:this.two_years_goal,
+        five_years_goal:this.five_years_goal
       })
       this.$router.push({ name: 'ProfileDatas' })
     }
   }
 }
+
 </script>
 <style>
 .far{
